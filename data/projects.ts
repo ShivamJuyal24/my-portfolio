@@ -65,7 +65,7 @@ export const projects: Project[] = [
   {
     name: "Grocery4U",
     tagline: "Dynamic e-commerce web application for seamless grocery shopping",
-    image: "/projects/grocery4u.png",
+    image: "/projects/Grocery4U.png",
     tech: ["Node.js", "Express.js", "EJS", "MongoDB", "Stripe"],
     metrics: [
       { value: "100+", label: "products listed" },
@@ -82,7 +82,7 @@ export const projects: Project[] = [
   {
     name: "SmartUrl",
     tagline: "MERN stack URL shortener with copy-to-clipboard functionality",
-    image: "/projects/smarturl.png",
+    image: "/projects/SmartUrl.png",
     tech: ["MongoDB", "Express.js", "React.js", "Node.js", "Tailwind CSS"],
     metrics: [
       { value: "Instant", label: "URL shortening" },
@@ -99,7 +99,7 @@ export const projects: Project[] = [
   {
     name: "ReviewBot",
     tagline: "AI-powered code review web app using Gemini 2.5 Flash",
-    image: "/projects/reviewbot.png",
+    image: "/projects/Reviewbot.png",
     tech: ["React.js", "Vite", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Gemini 2.5 Flash"],
     metrics: [
       { value: "Instant", label: "AI-powered feedback" },
@@ -116,7 +116,7 @@ export const projects: Project[] = [
   {
     name: "ChessHub",
     tagline: "Real-time multiplayer chess game with WebSockets",
-    image: "/projects/chesshub.png",
+    image: "/projects/Chesshub.png",
     tech: ["Node.js", "Socket.IO", "Chess.js", "Express.js"],
     metrics: [
       { value: "Real-time", label: "multiplayer gameplay" },

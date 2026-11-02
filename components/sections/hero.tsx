@@ -3,7 +3,7 @@ import { profile } from "@/data/profile";
 import { TypingText } from "@/components/sections/typing-text";
 import { ViewCounter } from "@/components/sections/view-counter";
 
-const phrases = [profile.role, "Always learning", "Trying to do better"];
+const phrases = [profile.role, "Always learning", "Open to work", "Let's connect!"];
 
 export function Hero() {
   return (

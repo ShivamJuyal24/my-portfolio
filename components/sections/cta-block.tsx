@@ -8,11 +8,9 @@ export function CtaBlock({ className }: { className?: string }) {
           Hey, you scrolled this far, let&apos;s talk.
         </p>
 
-        <a
-          href="https://cal.com/shivam-juyal-pgrkuk/30min" // replace with your booking link
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border bg-secondary px-3 py-1.5 text-sm font-semibold transition hover:bg-secondary/70"
+        <button
+          onClick={() => window.open("https://cal.com/shivam-juyal-pgrkuk/30min", "_blank")}
+          className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border bg-secondary px-3 py-1.5 text-sm font-semibold transition hover:bg-secondary/70 cursor-pointer"
         >
           <Image
             src="/projects/profile.jpeg"
@@ -22,7 +20,7 @@ export function CtaBlock({ className }: { className?: string }) {
             className="size-6 rounded-full object-cover"
           />
           Book a Free Call
-        </a>
+        </button>
       </div>
     </section>
   );

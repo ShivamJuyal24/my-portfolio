@@ -124,10 +124,10 @@ export const projects: Project[] = [
       { value: "Chess.js", label: "logic validation" },
     ],
     points: [
-      "Built a real-time, backend-powered multiplayer chess game using Node.js, Express.js, and WebSockets for seamless communication.",
-      "Implemented dynamic chessboard rendering with drag-and-drop movements and logic validation using Chess.js.",
-      "Enabled live, turn-based gameplay between connected players.",
+      "Built a real-time multiplayer chess app with Node.js, Express, Socket.IO, and chess.js, featuring server-authoritative move validation, live game sync, 5+0 clocks, and resign/draw/rematch flows.",
+      "Developed a responsive interactive client with drag-and-drop/click moves, legal-move highlights, promotion, move history, and keyboard/ARIA accessibility.",
     ],
     github: "https://github.com/ShivamJuyal24/chesshub",
+    demo: "https://chesshub-vbd8.onrender.com/",
   },
 ];

@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/hero";
 import { Experience } from "@/components/sections/experience";
 import { Education } from "@/components/sections/education";
 import { HomeProjects } from "@/components/sections/home-projects";
+import { OpenSourceContributions } from "@/components/sections/open-source-contributions";
 import { ConnectSection } from "@/components/sections/connect-section";
 import { CtaBlock } from "@/components/sections/cta-block";
 import { profile } from "@/data/profile";
@@ -57,6 +58,9 @@ export default function Home() {
         <Experience />
       </Section>
       <Divider />
+      <Section title="Open Source Contributions">
+        <OpenSourceContributions />
+      </Section>
       <Divider />
       <HomeProjects />
       <Divider />

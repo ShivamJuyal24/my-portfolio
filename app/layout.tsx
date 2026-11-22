@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const heading = Space_Grotesk({
+const display = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-heading-face",
+  weight: "400",
+  variable: "--font-display",
 });
 const sans = Inter({ subsets: ["latin"], variable: "--font-body" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-code" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
   title: "Shivam Juyal",
@@ -20,9 +21,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${heading.variable} ${sans.variable} ${mono.variable}`}
+      className={`${display.variable} ${sans.variable} ${mono.variable}`}
     >
-      <body className="bg-background font-sans text-foreground antialiased">
+      <body className="font-sans antialiased">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

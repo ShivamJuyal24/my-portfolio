@@ -138,7 +138,7 @@ export function OpenSourceContributions() {
 
   return (
     <div>
-      <p className="mb-4 text-sm leading-relaxed text-foreground/85">
+      <p className="mb-4 text-sm leading-relaxed text-text-body">
         Contributions across payments, developer tooling, and edge computing.
       </p>
       <div className="divide-y divide-border">
@@ -149,22 +149,22 @@ export function OpenSourceContributions() {
           >
             <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
               <div className="min-w-0">
-                <h3 className="font-heading text-lg font-medium">
+                <h3 className="type-card">
                   <a
                     href={contribution.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-primary underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex items-center gap-1.5 text-foreground hover:text-primary"
                   >
                     {contribution.name}
                     <ExternalLink size={14} aria-hidden="true" className="shrink-0" />
                   </a>
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-text-body">
                   {contribution.descriptor}
                 </p>
               </div>
-              <span className="shrink-0 font-mono text-xs text-muted-foreground">
+              <span className="shrink-0 font-mono text-xs text-text-muted">
                 {contribution.prCount} merged{" "}
                 {contribution.prCount === 1 ? "PR" : "PRs"} · {contribution.date}
               </span>
@@ -174,7 +174,7 @@ export function OpenSourceContributions() {
               {contribution.tags.map((tag) => (
                 <li
                   key={tag}
-                  className="rounded-md border border-border bg-card px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
+                  className="rounded-[var(--radius-small)] bg-foreground/5 px-2 py-1 font-mono text-[11px] leading-tight text-text-body"
                 >
                   {tag}
                 </li>
@@ -184,15 +184,15 @@ export function OpenSourceContributions() {
             <ul className="mt-4 space-y-3">
               {contribution.prs.map((pr) => (
                 <li key={pr.number} className="flex min-w-0 items-start gap-2">
-                  <span aria-hidden="true" className="mt-2.5 size-1 shrink-0 rounded-full bg-primary" />
-                  <div className="min-w-0 text-sm leading-relaxed text-foreground/85">
+                  <span aria-hidden="true" className="shrink-0 text-text-muted">–</span>
+                  <div className="min-w-0 text-sm leading-relaxed text-text-body">
                     {pr.summary}{" "}
                     <a
                       href={pr.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${contribution.name} pull request #${pr.number} (opens in a new tab)`}
-                      className="inline-flex items-center gap-1 rounded-md border border-border bg-muted/40 px-1.5 py-0.5 text-xs font-medium text-foreground underline-offset-4 hover:bg-muted hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-text-muted underline-offset-4 decoration-primary hover:text-primary hover:underline"
                     >
                       PR #{pr.number}
                       <ExternalLink size={11} aria-hidden="true" />
@@ -209,7 +209,7 @@ export function OpenSourceContributions() {
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-text-body underline-offset-4 decoration-primary hover:text-primary hover:underline"
         >
           View all contributions on GitHub
           <ExternalLink size={14} aria-hidden="true" />

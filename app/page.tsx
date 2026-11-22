@@ -5,8 +5,8 @@ import { Education } from "@/components/sections/education";
 import { HomeProjects } from "@/components/sections/home-projects";
 import { ProofStrip } from "@/components/sections/proof-strip";
 import { OpenSourceContributions } from "@/components/sections/open-source-contributions";
+import { Skills } from "@/components/sections/skills";
 import { CtaBlock } from "@/components/sections/cta-block";
-import { achievements } from "@/data/education";
 import { ContributionGraph } from "@/components/widgets/contribution-graph";
 import { Suspense } from "react";
 
@@ -37,25 +37,18 @@ export default function Home() {
           <ContributionGraph username="ShivamJuyal24" />
         </Suspense>
       </Section>
-      <Section title="Experience" number="03" id="experience">
+      <HomeProjects />
+      <Section title="Experience" number="04" id="experience">
         <Experience />
       </Section>
-      <Section title="Open Source Contributions" number="04" id="open-source">
+      <Section title="Open Source Contributions" number="05" id="open-source">
         <OpenSourceContributions />
       </Section>
-      <HomeProjects />
-      <Section title="Education" number="06" id="education">
-        <Education />
+      <Section title="Skills" number="06" id="skills">
+        <Skills />
       </Section>
-      <Section title="Achievements" number="07" id="achievements">
-        <ul className="space-y-2 text-sm text-muted-foreground">
-          {achievements.map((a) => (
-            <li key={a} className="flex gap-2">
-              <span className="mt-2 size-1 shrink-0 rounded-full bg-primary" />
-              {a}
-            </li>
-          ))}
-        </ul>
+      <Section title="Education" number="07" id="education">
+        <Education />
       </Section>
       <CtaBlock />
     </Shell>

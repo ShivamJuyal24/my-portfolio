@@ -13,7 +13,7 @@ export function HomeProjects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <Section title="Projects" number="05" id="projects">
+    <Section title="Projects" number="03" id="projects">
       <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2">
         {projects.slice(0, 2).map((p) => (
           <ProjectCard

@@ -1,61 +1,42 @@
-"use client";
-import { useState } from "react";
-import { ChevronsUpDown } from "lucide-react";
 import { experience } from "@/data/experience";
 
 export function Experience() {
-  const [open, setOpen] = useState<number | null>(0);
-
   return (
-    <ul className="divide-y divide-border">
-      {experience.map((e, i) => {
-        const isOpen = open === i;
-        return (
-          <li key={e.company + e.period}>
-            <button
-              onClick={() => setOpen(isOpen ? null : i)}
-              aria-expanded={isOpen}
-              className="flex w-full items-start justify-between gap-4 p-4 text-left transition-colors hover:bg-muted/40"
-            >
-              <div className="min-w-0">
-                <p className="font-medium">{e.company}</p>
-                <p className="mt-1 text-sm">{e.role}</p>
-                <p className="mt-1 font-mono text-xs text-muted-foreground">
-                  {e.type} · {e.period} · {e.location}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {e.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-md border border-border bg-card px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <ChevronsUpDown size={16} className="mt-1 shrink-0 text-muted-foreground" />
-            </button>
+    <div className="divide-y divide-border">
+      {experience.map((entry) => (
+        <article key={entry.company + entry.period} className="py-6 first:pt-0 last:pb-0">
+          <h3 className="type-card">{entry.company}</h3>
+          <p className="mt-1 text-text-body">{entry.role}</p>
+          <p className="type-meta mt-2">
+            {entry.type} · {entry.period} · {entry.location}
+          </p>
 
-            <div
-              className={`grid transition-all duration-300 ${
-                isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-              }`}
-            >
-              <ul className="overflow-hidden px-4">
-                <div className="space-y-2 pb-4 text-sm text-muted-foreground">
-                  {e.points.map((p) => (
-                    <li key={p} className="flex gap-2">
-                      <span className="mt-2 size-1 shrink-0 rounded-full bg-primary" />
-                      {p}
-                    </li>
-                  ))}
-                </div>
-              </ul>
-            </div>
-          </li>
-        );
-      })}
-    </ul>
+          <ul aria-label={`${entry.company} technologies`} className="mt-4 flex flex-wrap gap-1.5">
+            {entry.tech.slice(0, 5).map((tag) => (
+              <li
+                key={tag}
+                className="rounded-[var(--radius-small)] bg-foreground/5 px-2 py-1 font-mono text-[11px] leading-tight text-text-body"
+              >
+                {tag}
+              </li>
+            ))}
+            {entry.tech.length > 5 && (
+              <li className="rounded-[var(--radius-small)] bg-foreground/5 px-2 py-1 font-mono text-[11px] leading-tight text-text-body">
+                +{entry.tech.length - 5}
+              </li>
+            )}
+          </ul>
+
+          <ul className="mt-5 max-w-[75ch] space-y-3">
+            {entry.points.map((point) => (
+              <li key={point} className="flex items-start gap-3 text-sm leading-relaxed text-text-body">
+                <span aria-hidden="true" className="shrink-0 text-text-muted">–</span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
   );
 }

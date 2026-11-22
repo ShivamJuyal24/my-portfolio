@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/hero";
 import { Experience } from "@/components/sections/experience";
 import { Education } from "@/components/sections/education";
 import { HomeProjects } from "@/components/sections/home-projects";
+import { ProofStrip } from "@/components/sections/proof-strip";
 import { OpenSourceContributions } from "@/components/sections/open-source-contributions";
 import { CtaBlock } from "@/components/sections/cta-block";
 import { achievements } from "@/data/education";
@@ -26,6 +27,7 @@ export default function Home() {
           </p>
         </div>
       </Section>
+      <ProofStrip />
       <Section title="GitHub Activity" number="02" id="github-activity">
         <Suspense
           fallback={

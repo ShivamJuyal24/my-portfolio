@@ -1,105 +1,44 @@
 "use client";
+
 import Image from "next/image";
-import React from "react";
-import { useTheme } from "next-themes";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, ExternalLink, Play } from "lucide-react";
 import type { Project } from "@/data/projects";
-import { TechTag } from "./tech-tag";
-
-const brandSlugs: Record<string, string> = {
-  github: "github",
-  youtube: "youtube",
-  vercel: "vercel",
-};
-
-function BrandIcon({
-  slug,
-  color,
-  fallback,
-}: {
-  slug: string;
-  color: string;
-  fallback: React.ReactNode;
-}) {
-  const [failed, setFailed] = React.useState(false);
-  return (
-    <>
-      {!failed && (
-        <img
-          src={`https://cdn.simpleicons.org/${slug}/${color}`}
-          alt={slug}
-          width={13}
-          height={13}
-          className="size-3 shrink-0"
-          loading="lazy"
-          onError={() => setFailed(true)}
-          suppressHydrationWarning
-        />
-      )}
-      {failed && fallback}
-    </>
-  );
-}
 
 function Links({ p }: { p: Project }) {
-  const { theme } = useTheme();
-  const iconColor = theme === "dark" ? "ffffff" : "000000";
-
-  const items: Array<{
-    href: string;
-    label: string;
-    slug?: string;
-    lucideIcon?: React.ComponentType<{ size?: number }>;
-    primary?: boolean;
-  }> = [];
-  if (p.demo)
-    items.push({
-      href: p.demo,
-      label: "Live demo",
-      slug: "vercel",
-      lucideIcon: Play,
-      primary: true,
-    });
-  if (p.github) items.push({ href: p.github, label: "GitHub", slug: "github" });
-  if (p.video)
-    items.push({
-      href: p.video,
-      label: "Demo video",
-      slug: "youtube",
-      lucideIcon: Play,
-    });
-
   return (
     <div className="flex flex-wrap gap-2">
-      {items.map(({ href, label, slug, lucideIcon, primary }) => {
-        const Icon = lucideIcon ?? Play;
-        return (
-          <a
-            key={label}
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={label}
-            title={label}
-            className={`inline-flex items-center justify-center gap-1.5 rounded-lg border px-3 py-2 transition-colors ${
-              primary
-                ? "border-transparent bg-primary text-primary-foreground hover:bg-primary/90"
-                : "border-border hover:bg-muted"
-            }`}
-          >
-            {slug ? (
-              <BrandIcon
-                slug={slug}
-                color={iconColor}
-                fallback={<Icon size={13} />}
-              />
-            ) : (
-              <Icon size={13} />
-            )}
-            <span className="text-xs font-medium">{label}</span>
-          </a>
-        );
-      })}
+      {p.demo && (
+        <a
+          href={p.demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-[var(--radius-small)] bg-primary px-3 py-2 text-xs font-medium text-primary-foreground hover:bg-accent-hover hover:text-primary-foreground"
+        >
+          <ExternalLink size={13} aria-hidden="true" />
+          Live demo
+        </a>
+      )}
+      {p.github && (
+        <a
+          href={p.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-[var(--radius-small)] border border-border px-3 py-2 text-xs font-medium text-foreground hover:border-border-hover hover:bg-surface-hover"
+        >
+          GitHub
+        </a>
+      )}
+      {p.video && (
+        <a
+          href={p.video}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-[var(--radius-small)] border border-border px-3 py-2 text-xs font-medium text-foreground hover:border-border-hover hover:bg-surface-hover"
+        >
+          <Play size={13} aria-hidden="true" />
+          Demo video
+        </a>
+      )}
     </div>
   );
 }
@@ -109,16 +48,21 @@ function Tags({ items, limit }: { items: string[]; limit?: number }) {
   const hidden = items.length - shown.length;
 
   return (
-    <div className="flex flex-wrap gap-1.5">
-      {shown.map((t) => (
-        <TechTag key={t} name={t} />
+    <ul aria-label="Technologies" className="flex flex-wrap gap-1.5">
+      {shown.map((item) => (
+        <li
+          key={item}
+          className="rounded-[var(--radius-small)] bg-foreground/5 px-2 py-1 font-mono text-[11px] leading-tight text-text-body"
+        >
+          {item}
+        </li>
       ))}
       {hidden > 0 && (
-        <span className="inline-flex items-center rounded-md border border-border px-2 py-1 font-mono text-[11px] text-muted-foreground">
+        <li className="rounded-[var(--radius-small)] bg-foreground/5 px-2 py-1 font-mono text-[11px] leading-tight text-text-body">
           +{hidden}
-        </span>
+        </li>
       )}
-    </div>
+    </ul>
   );
 }
 
@@ -130,16 +74,30 @@ function Label({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function Preview({ p, sizes }: { p: Project; sizes?: string }) {
+export function Preview({
+  p,
+  sizes,
+  variant = "dialog",
+}: {
+  p: Project;
+  sizes?: string;
+  variant?: "card" | "dialog";
+}) {
   return (
-    <div className="relative aspect-video overflow-hidden border-b border-border bg-muted">
+    <div
+      className={
+        variant === "card"
+          ? "relative aspect-[16/10] overflow-hidden rounded-[var(--radius-small)] border border-border bg-muted"
+          : "relative aspect-video overflow-hidden border-b border-border bg-muted"
+      }
+    >
       {p.image ? (
         <Image
           src={p.image}
           alt={`${p.name} preview`}
           fill
-          sizes={sizes ?? "(min-width: 640px) 360px, 100vw"}
-          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          sizes={sizes ?? "(min-width: 768px) 420px, 100vw"}
+          className="object-cover object-top"
         />
       ) : (
         <div className="flex h-full items-center justify-center font-heading text-4xl text-muted-foreground/30">
@@ -150,7 +108,12 @@ export function Preview({ p, sizes }: { p: Project; sizes?: string }) {
   );
 }
 
-/* ---------- compact card (grid) ---------- */
+// TODO: Add verified outcome metrics for SmartUrl, ReviewBot and ChessHub when available.
+function measurableResult(p: Project) {
+  return p.metrics.find(({ value }) =>
+    /^\d+(?:[.,]\d+)?(?:%|\+|\/\d+|\s*→)/.test(value)
+  );
+}
 
 export function ProjectCard({
   project: p,
@@ -159,37 +122,53 @@ export function ProjectCard({
   project: Project;
   onShowMore?: () => void;
 }) {
+  const result = measurableResult(p);
+
   return (
     <article
       onClick={onShowMore}
-      className={`group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/40 ${
-        onShowMore ? "cursor-pointer hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20" : ""
+      className={`flex h-full min-w-0 flex-col rounded-[var(--radius-card)] border border-border bg-surface p-6 transition-[border-color,transform] duration-150 hover:-translate-y-0.5 hover:border-border-hover motion-reduce:transform-none md:p-8 ${
+        onShowMore ? "cursor-pointer" : ""
       }`}
     >
-      <Preview p={p} />
+      <Preview p={p} variant="card" />
 
-      <div className="flex flex-1 flex-col gap-4 p-4">
-        <div>
-          <h3 className="font-heading text-lg font-medium">{p.name}</h3>
-          <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{p.tagline}</p>
+      <div className="flex min-w-0 flex-1 flex-col">
+        <div className="mt-5 min-w-0">
+          <h3 className="type-card">{p.name}</h3>
+          <p className="mt-1 line-clamp-1 text-sm text-text-body" title={p.tagline}>
+            {p.tagline}
+          </p>
+          {result && (
+            <p
+              className="mt-2 truncate font-mono text-xs text-text-muted"
+              title={`${result.value} ${result.label}`}
+            >
+              {result.value} · {result.label}
+            </p>
+          )}
         </div>
 
-        <Tags items={p.tech} limit={4} />
+        <div className="mt-4">
+          <Tags items={p.tech} limit={4} />
+        </div>
 
         <div
-          className="mt-auto flex items-center justify-between gap-2 border-t border-border pt-3"
-          onClick={(e) => e.stopPropagation()}
+          className="mt-auto flex flex-wrap items-center gap-3 pt-6"
+          onClick={(event) => event.stopPropagation()}
         >
           <Links p={p} />
           {onShowMore && (
             <button
+              type="button"
               onClick={onShowMore}
-              className="group/btn inline-flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="group/details ml-auto inline-flex items-center gap-1 whitespace-nowrap text-xs font-medium text-text-body hover:text-accent-hover"
             >
               Details
               <ArrowRight
-                size={12}
-                className="transition-transform group-hover/btn:translate-x-0.5"
+                size={13}
+                aria-hidden="true"
+                className="transition-transform duration-150 group-hover/details:translate-x-0.5"
               />
             </button>
           )}
@@ -198,8 +177,6 @@ export function ProjectCard({
     </article>
   );
 }
-
-/* ---------- full details (used inside the dialog) ---------- */
 
 export function ProjectDetails({ project: p }: { project: Project }) {
   return (

@@ -14,7 +14,7 @@ export function HomeProjects() {
 
   return (
     <Section title="Projects" number="05" id="projects">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2">
         {projects.slice(0, 2).map((p) => (
           <ProjectCard
             key={p.name}
@@ -23,13 +23,13 @@ export function HomeProjects() {
           />
         ))}
       </div>
-      <div className="mt-5 flex justify-center">
+      <div className="mt-8 flex justify-center">
         <Link
           href="/projects"
-          className="group inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm transition-colors hover:bg-muted"
+          className="group inline-flex items-center gap-2 rounded-[var(--radius-small)] border border-border px-4 py-2 text-sm text-text-body hover:border-border-hover hover:bg-surface-hover hover:text-foreground"
         >
           Show all projects ({projects.length})
-          <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight size={14} aria-hidden="true" className="transition-transform duration-150 group-hover:translate-x-0.5" />
         </Link>
       </div>
       <ProjectDialog

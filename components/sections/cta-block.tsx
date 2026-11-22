@@ -23,7 +23,7 @@ function BookButton() {
       data-cal-namespace="book-call"
       data-cal-link={CAL_LINK}
       data-cal-config='{"layout":"month_view","theme":"dark"}'
-      className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-border bg-secondary px-3 py-1.5 text-sm font-semibold transition hover:bg-secondary/70"
+      className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-border bg-secondary px-3 py-1.5 text-sm font-semibold transition hover:bg-secondary/70"
     >
       <Image
         src="/projects/profile.jpeg"
@@ -39,13 +39,13 @@ function BookButton() {
 
 export function CtaBlock({ className }: { className?: string }) {
   return (
-    <section className={`rounded-xl border border-dashed border-border px-6 py-14 ${className ?? ""}`}>
+    <div id="contact-cta" className={`scroll-mt-24 py-8 ${className ?? ""}`}>
       <div className="flex flex-col items-center gap-4 text-center">
         <p className="text-lg font-medium text-muted-foreground">
           Hey, you scrolled this far, let&apos;s talk.
         </p>
         <BookButton />
       </div>
-    </section>
+    </div>
   );
 }

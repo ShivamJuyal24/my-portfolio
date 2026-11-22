@@ -11,14 +11,14 @@ export function ProjectsClient() {
 
   return (
     <Shell>
-      <div className="border-b border-border p-5">
-        <h1 className="text-3xl font-semibold sm:text-4xl">Projects</h1>
+      <div className="pt-16 md:pt-24">
+        <h1 className="type-section">Projects</h1>
         <p className="mt-2 text-muted-foreground">
           LLM systems, agents and infrastructure, each with measured results.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 p-5 sm:grid-cols-2">
+      <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
         {projects.map((p) => (
           <ProjectCard key={p.name} project={p} onShowMore={() => setSelected(p)} />
         ))}

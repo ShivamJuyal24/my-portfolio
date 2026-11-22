@@ -114,7 +114,7 @@ function Tags({ items, limit }: { items: string[]; limit?: number }) {
         <TechTag key={t} name={t} />
       ))}
       {hidden > 0 && (
-        <span className="inline-flex items-center rounded-md border border-dashed border-border px-2 py-1 font-mono text-[11px] text-muted-foreground">
+        <span className="inline-flex items-center rounded-md border border-border px-2 py-1 font-mono text-[11px] text-muted-foreground">
           +{hidden}
         </span>
       )}

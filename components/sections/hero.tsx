@@ -1,34 +1,34 @@
 import Image from "next/image";
 import { profile } from "@/data/profile";
-import { TypingText } from "@/components/sections/typing-text";
-import { ViewCounter } from "@/components/sections/view-counter";
-
-const phrases = [profile.role, "Always learning", "Open to work", "Let's connect!"];
+import { ConnectSection } from "@/components/sections/connect-section";
 
 export function Hero() {
   return (
-    <div className="relative flex items-center gap-5 p-5">
-      <ViewCounter className="absolute right-5 top-5" />
-
-      <Image
-        src="/projects/profile.jpeg"
-        alt={profile.name}
-        width={500}
-        height={500}
-        className="size-24 shrink-0 rounded-2xl object-cover border border-border"
-      />
-
-      <div className="min-w-0">
-        <h1 className="text-3xl font-semibold sm:text-4xl">{profile.name}</h1>
-        <TypingText prefix="23" phrases={phrases} />
-        <p className="mt-2 flex items-center gap-2 font-mono text-xs text-muted-foreground">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60" />
-            <span className="relative inline-flex size-2 rounded-full bg-primary" />
-          </span>
-          {profile.status}
-        </p>
+    <section id="home" className="scroll-mt-24 pt-16 md:pt-24">
+      <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
+        <Image
+          src="/projects/profile.jpeg"
+          alt={profile.name}
+          width={80}
+          height={80}
+          priority
+          className="size-20 shrink-0 rounded-[var(--radius-card)] border border-border object-cover"
+        />
+        <div className="min-w-0">
+          <h1 className="type-hero">{profile.name}</h1>
+          <p className="mt-3 text-base leading-relaxed text-text-body">
+            Backend engineer building LLM systems you can trust.
+          </p>
+          <p className="mt-3 flex items-center gap-2 font-mono text-xs text-text-muted">
+            <span aria-hidden="true" className="size-2 shrink-0 rounded-full bg-primary" />
+            {profile.status}
+            <span aria-hidden="true" className="h-3.5 w-0.5 animate-pulse bg-primary" />
+          </p>
+        </div>
       </div>
-    </div>
+      <div className="mt-8">
+        <ConnectSection links={profile.links} />
+      </div>
+    </section>
   );
 }

@@ -4,6 +4,7 @@ import { profile } from "@/data/profile";
 import { HireMeButton } from "@/components/widgets/hire-me-button";
 import { Year } from "./year";
 import { SleepyCat } from "@/components/widgets/sleepy-cat";
+import { ViewCounter } from "@/components/sections/view-counter";
 const navigate = [
   { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
@@ -38,12 +39,12 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="px-5 pb-5 pt-19">
+      <div className="pb-8 pt-8">
            <div className="relative">
     <div className="absolute bottom-full right-4">
       <SleepyCat />
     </div>
-        <figure className="relative overflow-hidden rounded-xl border border-border bg-card p-5">
+        <figure className="relative overflow-hidden rounded-xl bg-card p-5">
           <Quote
             aria-hidden
             className="absolute left-3 top-3 size-16 text-muted-foreground/15"
@@ -57,7 +58,7 @@ export function Footer() {
         </figure>
       </div>
 </div>
-      <div className="flex flex-col gap-8 border-t border-border p-5 sm:flex-row sm:justify-between">
+      <div className="flex flex-col gap-8 border-t border-border py-8 sm:flex-row sm:justify-between">
         <div>
           <h3 className="mb-3 font-mono text-xs font-medium uppercase tracking-widest text-muted-foreground">
             Navigate
@@ -97,8 +98,9 @@ export function Footer() {
         </div>
       </div>
 
-<div className="border-t border-border px-5 py-4 text-center font-mono text-xs text-muted-foreground">
-  © <Year /> {profile.name}. All rights reserved.
+<div className="flex flex-wrap items-center justify-between gap-2 border-t border-border py-4 font-mono text-xs text-muted-foreground">
+  <span>© <Year /> {profile.name}. All rights reserved.</span>
+  <ViewCounter />
 </div>
     </footer>
   );

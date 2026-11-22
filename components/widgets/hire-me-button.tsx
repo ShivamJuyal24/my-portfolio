@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
 
-const CAL_LINK = "https://cal.com/shivam-juyal-pgrkuk/30min"
+const CAL_LINK = "https://cal.com/shivam-juyal-pgrkuk/30min";
 
 export function HireMeButton({ className }: { className?: string }) {
   useEffect(() => {
@@ -11,7 +11,14 @@ export function HireMeButton({ className }: { className?: string }) {
       cal("ui", {
         theme: "dark",
         layout: "month_view",
-styles: { branding: { brandColor: "#34d399" } },        hideEventTypeDetails: false,
+        styles: {
+          branding: {
+            brandColor: getComputedStyle(document.documentElement)
+              .getPropertyValue("--accent-color")
+              .trim(),
+          },
+        },
+        hideEventTypeDetails: false,
       });
     })();
   }, []);
@@ -23,7 +30,7 @@ styles: { branding: { brandColor: "#34d399" } },        hideEventTypeDetails: fa
       data-cal-config='{"layout":"month_view","theme":"dark"}'
       className={className}
     >
-      Hire-me
+      Hire me
     </button>
   );
 }

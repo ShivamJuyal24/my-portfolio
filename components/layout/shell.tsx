@@ -2,31 +2,48 @@ import { Navbar } from "./navbar";
 import { Footer } from "./footer";
 export function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mx-auto min-h-screen max-w-3xl border-x border-border">
+    <div className="mx-auto min-h-screen max-w-[1000px] px-6 md:px-12">
       <Navbar />
-      {children}
+      <main className="space-y-[var(--section-spacing)] pb-[var(--section-spacing)]">
+        {children}
+      </main>
       <Footer />
     </div>
   );
 }
 
-export function Divider() {
-  return <div aria-hidden className="h-6 border-y border-dashed border-border" />;
+export function SectionHeader({
+  number,
+  title,
+}: {
+  number: string;
+  title: string;
+}) {
+  return (
+    <header className="mb-6 md:mb-8">
+      <p className="type-meta uppercase tracking-[0.08em]">
+        {number} / {title}
+      </p>
+      <h2 className="type-section mt-2">{title}</h2>
+    </header>
+  );
 }
 
 export function Section({
   title,
+  number,
   children,
+  id,
 }: {
   title: string;
+  number: string;
   children: React.ReactNode;
+  id?: string;
 }) {
   return (
-    <section>
-      <h2 className="border-b border-border px-4 py-3 text-2xl font-medium">
-        {title}
-      </h2>
-      <div className="p-4">{children}</div>
+    <section id={id} className="scroll-mt-24">
+      <SectionHeader number={number} title={title} />
+      {children}
     </section>
   );
 }

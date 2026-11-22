@@ -12,7 +12,13 @@ function BookButton() {
       cal("ui", {
         theme: "dark",
         layout: "month_view",
-        styles: { branding: { brandColor: "#34d399" } },
+        styles: {
+          branding: {
+            brandColor: getComputedStyle(document.documentElement)
+              .getPropertyValue("--accent-color")
+              .trim(),
+          },
+        },
       });
     })();
   }, []);
@@ -23,7 +29,7 @@ function BookButton() {
       data-cal-namespace="book-call"
       data-cal-link={CAL_LINK}
       data-cal-config='{"layout":"month_view","theme":"dark"}'
-      className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-border bg-secondary px-3 py-1.5 text-sm font-semibold transition hover:bg-secondary/70"
+      className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-border bg-surface px-3 py-1.5 text-sm font-semibold text-foreground transition hover:border-border-hover hover:bg-surface-hover"
     >
       <Image
         src="/projects/profile.jpeg"
@@ -39,13 +45,16 @@ function BookButton() {
 
 export function CtaBlock({ className }: { className?: string }) {
   return (
-    <div id="contact-cta" className={`scroll-mt-24 py-8 ${className ?? ""}`}>
+    <section
+      id="contact-cta"
+      className={`scroll-mt-24 rounded-xl border border-dashed border-border px-6 py-14 ${className ?? ""}`}
+    >
       <div className="flex flex-col items-center gap-4 text-center">
-        <p className="text-lg font-medium text-muted-foreground">
+        <p className="text-lg font-medium text-text-body">
           Hey, you scrolled this far, let&apos;s talk.
         </p>
         <BookButton />
       </div>
-    </div>
+    </section>
   );
 }

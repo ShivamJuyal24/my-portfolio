@@ -14,8 +14,4 @@ export const profile = {
     { label: "Mail", href: "mailto:shivamjuyal.dev@gmail.com" },
     { label: "Resume", href: "/resume.pdf" },
   ],
-    quote: {
-    text: "I was not born with a whole lot of natural talent... but I work hard and I never give up.",
-    author: "Rock Lee",
-  },
 };

@@ -31,7 +31,7 @@ export default function Home() {
       <Section title="GitHub Activity" number="02" id="github-activity">
         <Suspense
           fallback={
-            <p className="font-mono text-xs text-muted-foreground">Loading contributions...</p>
+            <p className="font-mono text-xs text-text-muted">Loading contributions...</p>
           }
         >
           <ContributionGraph username="ShivamJuyal24" />

@@ -5,11 +5,11 @@ const GAP = 3;
 const STEP = CELL + GAP;
 
 const LEVEL_CLASS = [
-  "bg-muted",
-  "bg-chart-5",
-  "bg-chart-4",
-  "bg-chart-2",
-  "bg-chart-1",
+  "bg-border",
+  "bg-border-hover",
+  "bg-text-muted",
+  "bg-primary/60",
+  "bg-primary",
 ];
 
 function levelFor(count: number, max: number) {
@@ -26,7 +26,7 @@ export async function ContributionGraph({ username }: { username: string }) {
 
   if (!data) {
     return (
-      <p className="font-mono text-xs text-muted-foreground">
+      <p className="font-mono text-xs text-text-muted">
         Contribution data unavailable right now.
       </p>
     );
@@ -53,11 +53,11 @@ export async function ContributionGraph({ username }: { username: string }) {
 
   return (
     <div>
-      <div className="mb-3 flex items-center justify-between font-mono text-xs text-muted-foreground">
+      <div className="mb-3 flex items-center justify-between font-mono text-xs text-text-muted">
         <span>{total} contributions in the last year</span>
         <span className="flex items-center gap-1.5">
           <span
-            className={`size-1.5 rounded-full ${codedToday ? "bg-primary" : "bg-muted-foreground/40"}`}
+            className={`size-1.5 rounded-full ${codedToday ? "bg-primary" : "bg-text-muted/40"}`}
           />
           {codedToday ? "Coded today" : "No code today"}
         </span>
@@ -65,7 +65,7 @@ export async function ContributionGraph({ username }: { username: string }) {
 
       <div className="overflow-x-auto pb-2">
         <div style={{ width: weeks.length * STEP }}>
-          <div className="relative mb-1.5 h-4 font-mono text-[10px] text-muted-foreground">
+          <div className="relative mb-1.5 h-4 font-mono text-[10px] text-text-muted">
             {labels.map((l) => (
               <span key={l.text + l.col} className="absolute" style={{ left: l.col * STEP }}>
                 {l.text}
@@ -90,7 +90,7 @@ export async function ContributionGraph({ username }: { username: string }) {
         </div>
       </div>
 
-      <div className="mt-2 flex items-center justify-end gap-1.5 font-mono text-[10px] text-muted-foreground">
+      <div className="mt-2 flex items-center justify-end gap-1.5 font-mono text-[10px] text-text-muted">
         Less
         {LEVEL_CLASS.map((c) => (
           <span key={c} className={`rounded-[3px] ${c}`} style={{ width: CELL, height: CELL }} />

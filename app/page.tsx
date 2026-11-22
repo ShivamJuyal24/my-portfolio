@@ -28,7 +28,17 @@ export default function Home() {
         </div>
       </Section>
       <ProofStrip />
-      <Section title="GitHub Activity" number="02" id="github-activity">
+      <Section title="Experience" number="02" id="experience">
+        <Experience />
+      </Section>
+      <Section title="Open Source Contributions" number="03" id="open-source">
+        <OpenSourceContributions />
+      </Section>
+      <HomeProjects />
+      <Section title="Skills" number="05" id="skills">
+        <Skills />
+      </Section>
+      <Section title="GitHub Activity" number="06" id="github-activity">
         <Suspense
           fallback={
             <p className="font-mono text-xs text-text-muted">Loading contributions...</p>
@@ -36,16 +46,6 @@ export default function Home() {
         >
           <ContributionGraph username="ShivamJuyal24" />
         </Suspense>
-      </Section>
-      <HomeProjects />
-      <Section title="Experience" number="04" id="experience">
-        <Experience />
-      </Section>
-      <Section title="Open Source Contributions" number="05" id="open-source">
-        <OpenSourceContributions />
-      </Section>
-      <Section title="Skills" number="06" id="skills">
-        <Skills />
       </Section>
       <Section title="Education" number="07" id="education">
         <Education />

@@ -47,6 +47,7 @@ export function CtaBlock({ className }: { className?: string }) {
   return (
     <section
       id="contact-cta"
+      aria-label="Get in touch"
       className={`scroll-mt-24 rounded-xl border border-dashed border-border px-6 py-14 ${className ?? ""}`}
     >
       <div className="flex flex-col items-center gap-4 text-center">

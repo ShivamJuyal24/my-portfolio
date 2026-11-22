@@ -29,7 +29,7 @@ export function Education() {
               href="https://www.npmjs.com/package/@the-white-wolf/ai-commit"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground underline-offset-4 hover:text-primary hover:underline"
+              className="text-foreground underline-offset-4 hover:text-accent-hover hover:underline"
             >
               {packageName}
             </a>

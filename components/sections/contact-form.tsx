@@ -74,9 +74,9 @@ export function ContactForm() {
       </button>
 
       {status === "sent" && (
-        <p className="text-sm text-muted-foreground">Thanks! I'll get back to you soon.</p>
+        <p className="text-sm text-muted-foreground">Thanks! I&apos;ll get back to you soon.</p>
       )}
-      {status === "error" && <p className="text-sm text-destructive">{error}</p>}
+      {status === "error" && <p role="alert" className="text-sm text-foreground">{error}</p>}
     </form>
   );
 }

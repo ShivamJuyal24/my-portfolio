@@ -8,7 +8,7 @@ export function Hero() {
       <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
         <Image
           src="/projects/profile.jpeg"
-          alt={profile.name}
+          alt={`Portrait of ${profile.name}`}
           width={80}
           height={80}
           priority
@@ -22,7 +22,7 @@ export function Hero() {
           <p className="mt-3 flex items-center gap-2 font-mono text-xs text-text-muted">
             <span aria-hidden="true" className="size-2 shrink-0 rounded-full bg-primary" />
             {profile.status}
-            <span aria-hidden="true" className="h-3.5 w-0.5 animate-pulse bg-primary" />
+            <span aria-hidden="true" className="h-3.5 w-0.5 animate-pulse bg-text-muted" />
           </p>
         </div>
       </div>

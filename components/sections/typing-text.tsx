@@ -37,11 +37,11 @@ export function TypingText({
       {prefix && (
         <>
           <span>{prefix}</span>
-          <span className="mx-2 text-primary">·</span>
+          <span className="mx-2 text-text-muted">·</span>
         </>
       )}
       <span className="font-mono">{text}</span>
-      <span className="ml-0.5 inline-block h-4 w-0.5 animate-pulse bg-primary" />
+      <span className="ml-0.5 inline-block h-4 w-0.5 animate-pulse bg-text-muted" />
     </p>
   );
 }

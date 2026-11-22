@@ -154,7 +154,7 @@ export function OpenSourceContributions() {
                     href={contribution.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-foreground hover:text-primary"
+                    className="inline-flex items-center gap-1.5 text-foreground hover:text-accent-hover"
                   >
                     {contribution.name}
                     <ExternalLink size={14} aria-hidden="true" className="shrink-0" />
@@ -192,7 +192,7 @@ export function OpenSourceContributions() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${contribution.name} pull request #${pr.number} (opens in a new tab)`}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-text-muted underline-offset-4 decoration-primary hover:text-primary hover:underline"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-text-muted underline-offset-4 decoration-accent-hover hover:text-accent-hover hover:underline"
                     >
                       PR #{pr.number}
                       <ExternalLink size={11} aria-hidden="true" />
@@ -209,7 +209,7 @@ export function OpenSourceContributions() {
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-text-body underline-offset-4 decoration-primary hover:text-primary hover:underline"
+          className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-text-body underline-offset-4 decoration-accent-hover hover:text-accent-hover hover:underline"
         >
           View all contributions on GitHub
           <ExternalLink size={14} aria-hidden="true" />

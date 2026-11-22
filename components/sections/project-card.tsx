@@ -94,7 +94,7 @@ export function Preview({
       {p.image ? (
         <Image
           src={p.image}
-          alt={`${p.name} preview`}
+          alt={`Screenshot of ${p.name}`}
           fill
           sizes={sizes ?? "(min-width: 768px) 420px, 100vw"}
           className="object-cover object-top"
@@ -185,7 +185,7 @@ export function ProjectDetails({ project: p }: { project: Project }) {
         <dl className="grid gap-2 sm:grid-cols-3">
           {p.metrics.map((m) => (
             <div key={m.label} className="rounded-lg border border-border bg-background/50 p-3">
-              <dt className="break-words font-mono text-lg font-medium text-primary">{m.value}</dt>
+              <dt className="break-words font-mono text-lg font-medium text-foreground">{m.value}</dt>
               <dd className="mt-1 text-[11px] leading-snug text-muted-foreground">{m.label}</dd>
             </div>
           ))}
@@ -197,7 +197,7 @@ export function ProjectDetails({ project: p }: { project: Project }) {
         <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
           {p.points.map((pt) => (
             <li key={pt} className="flex gap-2.5">
-              <span className="mt-2 size-1 shrink-0 rounded-full bg-primary" />
+              <span className="mt-2 size-1 shrink-0 rounded-full bg-text-muted" />
               {pt}
             </li>
           ))}

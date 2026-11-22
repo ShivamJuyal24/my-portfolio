@@ -62,7 +62,7 @@ export function Navbar() {
     >
       <nav aria-label="Main navigation" className="flex h-16 items-center justify-between gap-3">
         <Link href="/" className="shrink-0 font-sans text-lg font-semibold tracking-tight">
-          SJ<span className="text-primary">.</span>
+          SJ<span>.</span>
         </Link>
 
         <div className="flex items-center gap-2 text-xs sm:gap-5 sm:text-sm">
@@ -88,7 +88,7 @@ export function Navbar() {
             );
           })}
           <ThemeToggle />
-          <HireMeButton className="shrink-0 cursor-pointer rounded-[var(--radius-small)] border border-primary px-2 py-1.5 font-medium text-primary hover:bg-primary hover:text-primary-foreground sm:px-3" />
+          <HireMeButton className="shrink-0 cursor-pointer rounded-[var(--radius-small)] border border-primary px-2 py-1.5 font-medium text-accent-hover hover:bg-primary hover:text-primary-foreground sm:px-3" />
         </div>
       </nav>
     </header>

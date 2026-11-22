@@ -1,5 +1,19 @@
 export type Day = { date: string; count: number };
 export type Contributions = { total: number; weeks: Day[][] };
+type CalendarDay = { date: string; contributionCount: number };
+type CalendarWeek = { contributionDays: CalendarDay[] };
+type GithubResponse = {
+  data?: {
+    user?: {
+      contributionsCollection?: {
+        contributionCalendar?: {
+          totalContributions: number;
+          weeks: CalendarWeek[];
+        };
+      };
+    };
+  };
+};
 
 const QUERY = `
 query($login: String!) {
@@ -31,14 +45,14 @@ export async function getContributions(login: string): Promise<Contributions | n
     });
     if (!res.ok) return null;
 
-    const json = await res.json();
+    const json = (await res.json()) as GithubResponse;
     const cal = json?.data?.user?.contributionsCollection?.contributionCalendar;
     if (!cal) return null;
 
     return {
       total: cal.totalContributions,
-      weeks: cal.weeks.map((w: any) =>
-        w.contributionDays.map((d: any) => ({
+      weeks: cal.weeks.map((w) =>
+        w.contributionDays.map((d) => ({
           date: d.date,
           count: d.contributionCount,
         }))

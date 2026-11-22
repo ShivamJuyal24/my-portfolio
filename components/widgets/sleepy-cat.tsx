@@ -34,7 +34,7 @@ function Sprite({ rows, className }: { rows: string[]; className: string }) {
       height={rows.length * PIXEL}
       shapeRendering="crispEdges"
       aria-hidden
-      className={`absolute bottom-0 left-0 transition-opacity duration-200 ${className}`}
+      className={`absolute bottom-0 left-0 transition-opacity duration-150 ${className}`}
     >
       {rows.flatMap((row, y) =>
         [...row].map((c, x) => {
@@ -43,7 +43,7 @@ function Sprite({ rows, className }: { rows: string[]; className: string }) {
   c === "e"
     ? "fill-background"
     : c === "p" || c === "o"
-    ? "fill-primary"
+    ? "fill-text-body"
     : c === "g"
     ? "fill-muted-foreground"
     : "fill-foreground";

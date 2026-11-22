@@ -65,10 +65,12 @@
   --border-hover: #3d3935;
   --foreground: #f2ede4;
   --text-body: #b5aea2;
-  --text-muted: #7c766b;
-  --accent-color: #e5412d;
-  --accent-hover: #f0573f;
-  --accent-soft: rgba(229, 65, 45, 0.12);
+  --text-muted: #8a8378;
+  --accent-color: #34d399;
+  --accent-hover: #6ee7b7;
+  --accent-soft: rgba(52, 211, 153, 0.12);
+  --selection-background: var(--accent-color);
+  --selection-foreground: var(--background);
 
   /* Existing shadcn/Tailwind names keep existing components on the new palette. */
   --card: var(--surface);
@@ -120,10 +122,12 @@
   --border-hover: #c4bdac;
   --foreground: #141312;
   --text-body: #4f4b44;
-  --text-muted: #8b857a;
-  --accent-color: #d62b1f;
-  --accent-hover: #b8231a;
-  --accent-soft: rgba(214, 43, 31, 0.1);
+  --text-muted: #6d675d;
+  --accent-color: #047857;
+  --accent-hover: #065f46;
+  --accent-soft: rgba(4, 120, 87, 0.1);
+  --selection-background: var(--accent-hover);
+  --selection-foreground: var(--surface);
   --primary-foreground: var(--surface);
 }
 
@@ -175,8 +179,12 @@
   }
 
   ::selection {
-    background: var(--accent-color);
-    color: #0e0d0c;
+    background: var(--selection-background);
+    color: var(--selection-foreground);
+  }
+
+  svg.lucide {
+    stroke-width: 1.75px;
   }
 }
 
@@ -225,6 +233,18 @@
 :where(a, button, input, select, textarea, summary, [role="button"], [tabindex]:not([tabindex="-1"])):focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main :where(section, article)[data-reveal-state] {
+    transition: opacity 400ms ease-out var(--reveal-delay, 0ms),
+      transform 400ms ease-out var(--reveal-delay, 0ms);
+  }
+
+  main :where(section, article)[data-reveal-state="pending"] {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

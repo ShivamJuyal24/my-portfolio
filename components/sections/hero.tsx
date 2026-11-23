@@ -4,7 +4,7 @@ import { ConnectSection } from "@/components/sections/connect-section";
 
 export function Hero() {
   return (
-    <section id="home" className="scroll-mt-24 pt-16 md:pt-24">
+    <section id="home" className="scroll-mt-24 pt-12 md:pt-16">
       <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
         <Image
           src="/projects/profile.jpeg"

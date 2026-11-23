@@ -17,13 +17,10 @@ export default function Home() {
       <Section title="About" number="01" id="about">
         <div className="type-body max-w-[70ch] space-y-4">
           <p>
-            I’m a software engineer who builds where backend systems meet AI: APIs, queues and retrieval pipelines that make LLM features dependable enough for real users.
+            I’m a backend engineer who builds where APIs, queues and retrieval pipelines meet LLMs. I like digging into real codebases, from shipping my own projects to fixing bugs in open source repos, and I care about getting the details right.
           </p>
           <p>
-            I care about the parts nobody sees but everybody feels. With AI especially, I’d rather measure whether a system can be trusted than assume it. That’s why my projects ship with evaluation sets and CI, not just demos.
-          </p>
-          <p>
-            I’m looking for a role on a team building LLM-powered products, where I can own backend and AI infrastructure work and keep learning from stronger engineers.
+            I’m looking for a role on a team building LLM-powered products, where I can own backend and AI infrastructure work.
           </p>
         </div>
       </Section>

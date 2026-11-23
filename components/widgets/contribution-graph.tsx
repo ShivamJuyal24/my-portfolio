@@ -6,9 +6,9 @@ const STEP = CELL + GAP;
 
 const LEVEL_CLASS = [
   "bg-border",
-  "bg-border-hover",
-  "bg-text-muted",
-  "bg-primary/60",
+  "bg-primary/25",
+  "bg-primary/45",
+  "bg-primary/70",
   "bg-primary",
 ];
 

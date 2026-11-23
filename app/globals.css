@@ -257,3 +257,131 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Theme toggle: circular reveal through the View Transitions API. */
+::view-transition-group(root) {
+  animation: none;
+}
+
+/* Disable the default crossfade for both snapshots... */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ...then reveal the incoming theme with a circle grown from the toggle. */
+::view-transition-new(root) {
+  animation: theme-circle-reveal 500ms ease-out both;
+}
+
+@keyframes theme-circle-reveal {
+  from {
+    clip-path: circle(0px at var(--theme-toggle-x, 50%) var(--theme-toggle-y, 50%));
+  }
+  to {
+    clip-path: circle(
+      var(--theme-toggle-radius, 150vmax) at var(--theme-toggle-x, 50%)
+        var(--theme-toggle-y, 50%)
+    );
+  }
+}
+
+/* Sun/moon swap. CSS decides which icon is visible, so the incoming view
+   transition snapshot always contains the new icon. */
+.theme-icon {
+  position: absolute;
+  transition: rotate 400ms ease-out, scale 400ms ease-out, opacity 400ms ease-out;
+}
+
+.theme-icon-sun {
+  opacity: 1;
+  rotate: 0deg;
+  scale: 1;
+}
+
+.theme-icon-moon {
+  opacity: 0;
+  rotate: -90deg;
+  scale: 0;
+}
+
+.light .theme-icon-sun {
+  opacity: 0;
+  rotate: 90deg;
+  scale: 0;
+}
+
+.light .theme-icon-moon {
+  opacity: 1;
+  rotate: 0deg;
+  scale: 1;
+}
+
+/* While a view transition runs, its icon snapshots handle the animation. */
+html.theme-vt .theme-icon {
+  transition: none !important;
+}
+
+::view-transition-group(theme-toggle) {
+  animation: none;
+}
+
+::view-transition-old(theme-toggle) {
+  animation: theme-icon-out 400ms ease-out both;
+  transform-origin: center;
+}
+
+::view-transition-new(theme-toggle) {
+  animation: theme-icon-in 400ms ease-out both;
+  transform-origin: center;
+}
+
+@keyframes theme-icon-out {
+  from {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+}
+
+@keyframes theme-icon-in {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* Fallback for browsers without View Transitions: a temporary color fade.
+   The class is added and removed by ThemeToggle, so this is not global. */
+html.theme-transition,
+html.theme-transition :where(:not(.theme-icon)),
+html.theme-transition :where(:not(.theme-icon))::before,
+html.theme-transition :where(:not(.theme-icon))::after {
+  transition-property: background-color, color, border-color, fill, stroke,
+    outline-color, box-shadow !important;
+  transition-duration: 300ms !important;
+  transition-timing-function: ease-out !important;
+  transition-delay: 0s !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(theme-toggle),
+  ::view-transition-new(theme-toggle) {
+    animation: none !important;
+  }
+
+  ::view-transition-new(root) {
+    clip-path: none !important;
+  }
+}

@@ -38,7 +38,7 @@ function BookButton() {
         height={48}
         className="size-6 rounded-full object-cover"
       />
-      Book a Free Call
+      Schedule a call
     </button>
   );
 }

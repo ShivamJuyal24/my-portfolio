@@ -272,7 +272,7 @@
 
 /* ...then reveal the incoming theme with a circle grown from the toggle. */
 ::view-transition-new(root) {
-  animation: theme-circle-reveal 500ms ease-out both;
+  animation: theme-circle-reveal 750ms ease-out both;
 }
 
 @keyframes theme-circle-reveal {
@@ -291,7 +291,7 @@
    transition snapshot always contains the new icon. */
 .theme-icon {
   position: absolute;
-  transition: rotate 400ms ease-out, scale 400ms ease-out, opacity 400ms ease-out;
+  transition: rotate 600ms ease-out, scale 600ms ease-out, opacity 600ms ease-out;
 }
 
 .theme-icon-sun {
@@ -328,12 +328,12 @@ html.theme-vt .theme-icon {
 }
 
 ::view-transition-old(theme-toggle) {
-  animation: theme-icon-out 400ms ease-out both;
+  animation: theme-icon-out 600ms ease-out both;
   transform-origin: center;
 }
 
 ::view-transition-new(theme-toggle) {
-  animation: theme-icon-in 400ms ease-out both;
+  animation: theme-icon-in 600ms ease-out both;
   transform-origin: center;
 }
 
@@ -367,7 +367,7 @@ html.theme-transition :where(:not(.theme-icon))::before,
 html.theme-transition :where(:not(.theme-icon))::after {
   transition-property: background-color, color, border-color, fill, stroke,
     outline-color, box-shadow !important;
-  transition-duration: 300ms !important;
+  transition-duration: 450ms !important;
   transition-timing-function: ease-out !important;
   transition-delay: 0s !important;
 }

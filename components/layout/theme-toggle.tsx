@@ -6,7 +6,7 @@ import { Moon, Sun } from "lucide-react";
 
 type Theme = "light" | "dark";
 
-const COLOR_TRANSITION_MS = 300;
+const COLOR_TRANSITION_MS = 450;
 
 function applyThemeToDocument(theme: Theme) {
   const root = document.documentElement;

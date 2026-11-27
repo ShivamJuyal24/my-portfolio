@@ -1,11 +1,13 @@
 import type { ReactNode } from "react";
 import { ExternalLink } from "lucide-react";
 import { profile } from "@/data/profile";
+import { ExpandableContribution } from "@/components/sections/expandable-contribution";
 
 type PullRequest = {
   number: number;
   url: string;
   summary: ReactNode;
+  details?: ReactNode;
 };
 
 type Contribution = {
@@ -23,52 +25,109 @@ const contributions: Contribution[] = [
     name: "Endora Commerce",
     repoUrl: "https://github.com/endora-commerce/endora-commerce",
     descriptor: "Open-source e-commerce platform",
-    tags: ["Payments", "PWA", "Accessibility"],
-    date: "Nov 2026",
-    prCount: 4,
+    tags: ["Payments", "Developer Tooling", "Cross-Platform", "Accessibility", "TDD"],
+    date: "Nov 2026 -- Current",
+    prCount: 7,
     prs: [
       {
         number: 1675,
         url: "https://github.com/endora-commerce/endora-commerce/pull/1675",
-        // TODO: Review the added impact clause about payment retries.
         summary: (
           <>
-            Fixed deferred-payment credit release with{" "}
-            <strong className="font-medium text-foreground">
-              transaction-safe, idempotent processing
-            </strong>{" "}
-            and durable retries — prevents double credit release on payment
-            retries.
+            <strong className="font-medium text-foreground">Transaction-safe deferred-payment credit release</strong>{" "}
+            with idempotent processing and durable retries.
+          </>
+        ),
+        details: (
+          <>
+            Deferred settlement could leave reserved customer credit unreleased.
+            The payment transaction now records a durable release obligation,
+            which is drained after commit and guarded against repeated or
+            concurrent settlements to prevent double release on payment retries.
+          </>
+        ),
+      },
+      {
+        number: 1962,
+        url: "https://github.com/endora-commerce/endora-commerce/pull/1962",
+        summary: (
+          <>
+            Fixed <strong className="font-medium text-foreground">cross-platform storefront packaging</strong>, resolving{" "}
+            <strong className="font-medium text-foreground">18 existing test failures</strong> and restoring Windows builds.
+          </>
+        ),
+        details: (
+          <>
+            Platform-native filesystem paths were not normalized at the
+            construction boundary, causing storefront tests and package builds
+            to fail on Windows. Normalizing paths where they are constructed
+            aligned downstream consumers; the change resolved 18 existing
+            storefront test failures and restored Windows package builds.
+          </>
+        ),
+      },
+      {
+        number: 2004,
+        url: "https://github.com/endora-commerce/endora-commerce/pull/2004",
+        summary: (
+          <>
+            Corrected <strong className="font-medium text-foreground">deployment-aware migration guidance</strong> and verified{" "}
+            <strong className="font-medium text-foreground">391 migration tests</strong>.
+          </>
+        ),
+        details: (
+          <>
+            Migration scaffolding did not clearly reflect the deployment
+            target. The CLI now emits target-specific guidance, with regression
+            coverage developed RED-to-GREEN. Verification recorded 391 passing
+            migration tests using a temporary local launcher workaround.
+          </>
+        ),
+      },
+      {
+        number: 1998,
+        url: "https://github.com/endora-commerce/endora-commerce/pull/1998",
+        summary: (
+          <>
+            Fixed <strong className="font-medium text-foreground">Windows test infrastructure</strong> to unblock migration regression testing.
+          </>
+        ),
+        details: (
+          <>
+            Workspace ownership resolution was incompatible with Windows path
+            separators. It now uses native separators while retaining directory
+            boundary checks, unblocking migration regression testing.
           </>
         ),
       },
       {
         number: 1775,
         url: "https://github.com/endora-commerce/endora-commerce/pull/1775",
-        // TODO: Review the added impact clause about failed saves.
         summary: (
           <>
-            Resolved language-preference save failures with{" "}
-            <strong className="font-medium text-foreground">safe rollback</strong>{" "}
-            and accessible feedback — makes failed saves visible to users.
+            Added <strong className="font-medium text-foreground">safe rollback and accessible feedback</strong> for language-preference save failures.
+          </>
+        ),
+        details: (
+          <>
+            A failed save silently reverted the selected language. The update
+            adds localized inline error feedback and a screen-reader
+            announcement while preserving safe rollback behavior.
           </>
         ),
       },
       {
         number: 1742,
         url: "https://github.com/endora-commerce/endora-commerce/pull/1742",
-        // TODO: Review the added impact clause about email display.
         summary: (
           <>
-            Improved transactional email rendering — helps customer emails display
-            correctly.
+            Added <strong className="font-medium text-foreground">image guards</strong> to transactional email rendering for correct customer email display.
           </>
         ),
       },
       {
         number: 1765,
         url: "https://github.com/endora-commerce/endora-commerce/pull/1765",
-        // TODO: Review the added impact clause about regressions.
         summary: (
           <>
             Improved PWA accessibility tests — helps catch accessibility
@@ -89,15 +148,18 @@ const contributions: Contribution[] = [
       {
         number: 3580,
         url: "https://github.com/backnotprop/plannotator/pull/3580",
-        // TODO: Review the added impact clause about labels surviving restarts.
         summary: (
           <>
-            Fixed session-label loss across server restarts using{" "}
-            <strong className="font-medium text-foreground">
-              JSON-backed persistence
-            </strong>
-            , change-driven writes, live-state precedence, and regression tests —
-            keeps labels available after restarts.
+            Fixed session-label loss across restarts with{" "}
+            <strong className="font-medium text-foreground">JSON-backed persistence</strong>.
+          </>
+        ),
+        details: (
+          <>
+            Session labels were lost when the server restarted. The change
+            persists them in JSON, writes only on changes, gives live state
+            precedence, and adds regression tests to keep labels available
+            after restarts.
           </>
         ),
       },
@@ -114,18 +176,20 @@ const contributions: Contribution[] = [
       {
         number: 47,
         url: "https://github.com/flisk-sh/flisk-tools/pull/47",
-        // TODO: Review the added impact clause about trailing-slash URLs.
         summary: (
           <>
             Fixed trailing-slash{" "}
             <strong className="font-medium text-foreground">404 routing bugs</strong>{" "}
-            in Cloudflare Workers/Hono using query-preserving{" "}
-            <strong className="font-medium text-foreground">301 redirects</strong>{" "}
-            and TDD;{" "}
-            <strong className="font-medium text-foreground">
-              168/168 tests passing
-            </strong>{" "}
-            — lets trailing-slash URLs reach the intended route.
+            with query-preserving redirects and{" "}
+            <strong className="font-medium text-foreground">168/168 tests passing</strong>.
+          </>
+        ),
+        details: (
+          <>
+            Trailing-slash URLs did not reach their intended Cloudflare
+            Workers/Hono routes. Query-preserving 301 redirects were added with
+            test-driven coverage, preserving URL query strings while routing
+            these requests correctly.
           </>
         ),
       },
@@ -185,18 +249,23 @@ export function OpenSourceContributions() {
               {contribution.prs.map((pr) => (
                 <li key={pr.number} className="flex min-w-0 items-start gap-2">
                   <span aria-hidden="true" className="shrink-0 text-text-muted">–</span>
-                  <div className="min-w-0 text-sm leading-relaxed text-text-body">
-                    {pr.summary}{" "}
-                    <a
-                      href={pr.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${contribution.name} pull request #${pr.number} (opens in a new tab)`}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-text-muted underline-offset-4 decoration-accent-hover hover:text-accent-hover hover:underline"
-                    >
-                      PR #{pr.number}
-                      <ExternalLink size={11} aria-hidden="true" />
-                    </a>
+                  <div className="min-w-0 flex-1">
+                    <ExpandableContribution
+                      summary={pr.summary}
+                      details={pr.details}
+                      prLink={
+                        <a
+                          href={pr.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${contribution.name} pull request #${pr.number} (opens in a new tab)`}
+                          className="inline-flex items-center gap-1 text-xs font-medium text-text-muted underline-offset-4 decoration-accent-hover hover:text-accent-hover hover:underline"
+                        >
+                          PR #{pr.number}
+                          <ExternalLink size={11} aria-hidden="true" />
+                        </a>
+                      }
+                    />
                   </div>
                 </li>
               ))}

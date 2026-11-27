@@ -14,7 +14,7 @@ const proof: Proof[] = [
     suffix: "%",
     label: "Hit@1 on Quill (up from 54%)",
   },
-  { value: 6, label: "merged PRs across 3 repos" },
+  { value: 9, label: "merged PRs across 3 repos" },
   { value: 15, prefix: "<", suffix: "s", label: "to graph a 500-file repo" },
 ];
 
